@@ -1,13 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emprendimiento
-    </title>
+    <title>Galería Surrealista | Dimensiones Paralelas</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    
+
+    <header class="header">
+        <a href="#" class="logo">Surreal<span>Art</span></a>
+        <nav class="nav">
+            <a href="#galeria">Galería</a>
+            <a href="#filosofia">Filosofía</a>
+            <a href="#contacto" class="btn-nav">Explorar</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>El Arte de lo <span>Imposible</span></h1>
+            <p>Donde los sueños se convierten en lienzos y la lógica deja de existir.</p>
+            <a href="#galeria" class="btn-primary">Ver Catálogo</a>
+        </div>
+    </section>
+
+    <main id="galeria" class="gallery-container">
+        <h2 class="section-title">Obras Disponibles</h2>
+        
+        <div class="grid-gallery">
+            <div class="art-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=600" alt="Persistencia del Tiempo">
+                    </div>
+                    <div class="card-back" style="background-image: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=600');">
+                        <div class="card-info">
+                            <h3>Persistencia del Tiempo</h3>
+                            <p class="description">Una reinterpretación onírica del flujo temporal. Óleo sobre lienzo con pigmentos iridiscentes. Dimensiones: 120cm x 90cm.</p>
+                            <p class="price">$120.000 COP</p>
+                            <a href="https://wa.me/57123456789?text=Hola,%20estoy%20interesado%20en%20el%20cuadro%20Persistencia%20del%20Tiempo" target="_blank" class="btn-card">Adquirir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="art-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=600" alt="Metamorfosis Líquida">
+                    </div>
+                    <div class="card-back" style="background-image: url('https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=600');">
+                        <div class="card-info">
+                            <h3>Metamorfosis Líquida</h3>
+                            <p class="description">La fusión de formas orgánicas y fluidos imposibles. Técnica mixta con texturas táctiles y pan de oro. Dimensiones: 100cm x 100cm.</p>
+                            <p class="price">$145.000 COP</p>
+                            <a href="https://wa.me/57123456789?text=Hola,%20estoy%20interesado%20en%20el%20cuadro%20Metamorfosis%20Líquida" target="_blank" class="btn-card">Adquirir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="art-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600" alt="El Despertar Cuántico">
+                    </div>
+                    <div class="card-back" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=600');">
+                        <div class="card-info">
+                            <h3>El Despertar Cuántico</h3>
+                            <p class="description">Una visualización del entrelazamiento y la conciencia expandida. Acrílico y resina epóxica sobre madera premium. Dimensiones: 150cm x 80cm.</p>
+                            <p class="price">$180.000 COP</p>
+                            <a href="https://wa.me/57123456789?text=Hola,%20estoy%20interesado%20en%20el%20cuadro%20El%20Despertar%20Cuántico" target="_blank" class="btn-card">Adquirir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="motivational-quote">"La realidad es solo un lienzo esperando a ser distorsionado por la mente correcta."</p>
+            <p class="copyright">&copy; 2026 SurrealArt. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/57123456789" class="whatsapp-float" target="_blank" aria-label="Contacto por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
 </body>
 </html>
