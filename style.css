@@ -1,0 +1,413 @@
+/* ==========================================================================
+   1. CONFIGURACIÓN GENERAL Y VARIABLES (Actualizadas para 3D)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap');
+
+:root {
+    --bg-dark: #0b0b0e;
+    --bg-card: #13131a;
+    --primary-color: #8a2be2; /* Morado Eléctrico */
+    --accent-color: #dfb15b;  /* Dorado Atenuado */
+    --text-light: #f5f5f7;
+    --text-muted: #a0a0a5;
+    /* Transición más larga para el efecto de giro */
+    --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Headings con tipografía de galería de arte */
+h1, h2, h3, .logo {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 2px;
+}
+
+/* ==========================================================================
+   2. HEADER & NAVEGACIÓN
+   ========================================================================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(11, 11, 14, 0.95), rgba(11, 11, 14, 0));
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.8rem;
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.logo span {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+}
+
+.nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition-smooth);
+}
+
+.nav a:hover {
+    color: var(--accent-color);
+}
+
+.nav .btn-nav {
+    border: 1px solid var(--primary-color);
+    padding: 8px 20px;
+    border-radius: 50px;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.2);
+}
+
+.nav .btn-nav:hover {
+    background: var(--primary-color);
+    color: var(--text-light);
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
+}
+
+/* ==========================================================================
+   3. SECCIÓN HERO (IMPACTO INICIAL)
+   ========================================================================== */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+    background: radial-gradient(circle at center, rgba(30, 15, 50, 0.6) 0%, var(--bg-dark) 70%);
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: var(--primary-color);
+    filter: blur(150px);
+    top: 20%;
+    left: 15%;
+    opacity: 0.3;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-content h1 span {
+    color: var(--accent-color);
+    text-shadow: 0 0 20px rgba(223, 177, 91, 0.3);
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    font-weight: 300;
+}
+
+.btn-primary {
+    color: var(--bg-dark);
+    background: var(--text-light);
+    text-decoration: none;
+    padding: 15px 40px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    transition: var(--transition-smooth);
+}
+
+.btn-primary:hover {
+    background: var(--primary-color);
+    color: var(--text-light);
+    box-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+    transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   4. GALERÍA EN GRID CON EFECTO DE GIRO (CARD FLIP)
+   ========================================================================== */
+.gallery-container {
+    padding: 100px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--accent-color);
+    margin: 15px auto 0 auto;
+}
+
+.grid-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+}
+
+/* Contenedor principal de la tarjeta (establece el espacio 3D) */
+.art-card {
+    background-color: transparent; /* Fondo transparente para el giro */
+    height: 500px; /* Altura fija para el efecto 3D */
+    perspective: 1500px; /* Crucial para el efecto de profundidad */
+    border-radius: 12px;
+}
+
+/* Contenedor interno que realmente gira */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d; /* Mantiene los hijos en el espacio 3D */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Estado de giro cuando el usuario aleja el cursor */
+.art-card:hover .card-inner {
+    transform: rotateY(180deg);
+    box-shadow: 0 20px 50px rgba(138, 43, 226, 0.2);
+}
+
+/* Estilo común para ambas caras */
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Oculta la cara posterior al girar */
+    backface-visibility: hidden;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* --- CARA FRONTAL (La Imagen) --- */
+.card-front {
+    background-color: var(--bg-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(20%);
+    transition: var(--transition-smooth);
+}
+
+/* --- CARA POSTERIOR (El Detalle) --- */
+.card-back {
+    background-color: var(--bg-card);
+    color: var(--text-light);
+    transform: rotateY(180deg); /* Ya está girada 180 grados */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Oscurecemos el fondo de la imagen usando un degradado superpuesto */
+.card-back::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    /* Degradado oscuro para resaltar el texto */
+    background: linear-gradient(135deg, rgba(11, 11, 14, 0.98), rgba(30, 15, 50, 0.85));
+    z-index: 1;
+}
+
+.card-info {
+    padding: 30px;
+    position: relative;
+    z-index: 2; /* Por encima del degradado oscuro */
+}
+
+.card-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: var(--text-light);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.description {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+.price {
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px rgba(223, 177, 91, 0.3);
+}
+
+.btn-card {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-light);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 0;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: var(--transition-smooth);
+}
+
+.btn-card:hover {
+    background: var(--primary-color);
+    color: var(--text-light);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+}
+
+/* ==========================================================================
+   5. FOOTER CON FRASE MOTIVACIONAL
+   ========================================================================== */
+.footer {
+    background: #060608;
+    padding: 80px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.motivational-quote {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--text-light);
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+.copyright {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   6. BOTÓN FLOTANTE DE WHATSAPP CON EFECTO PULSO
+   ========================================================================== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    line-height: 60px;
+    z-index: 100;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    transition: var(--transition-smooth);
+}
+
+.whatsapp-float::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #25d366;
+    border-radius: 50%;
+    z-index: -1;
+    animation: pulseWave 2s infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1) translateY(-5px);
+    background-color: #20ba5a;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+}
+
+@keyframes pulseWave {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Responsive básico para móviles */
+@media (max-width: 768px) {
+    .header { padding: 20px; }
+    .nav { display: none; }
+    .hero-content h1 { font-size: 2.3rem; }
+    .motivational-quote { font-size: 1.2rem; }
+    .whatsapp-float { bottom: 20px; right: 20px; }
+    .art-card { height: 400px; } /* Ajuste de altura para móviles */
+}
